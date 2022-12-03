@@ -1,11 +1,17 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { INestApplication } from '@nestjs/common/interfaces/nest-application.interface';
 const { version, description } = require('../package.json');
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.enableCors();
+  setupSwagger(app);
+  await app.listen(3000);
+}
 
+function setupSwagger(app: INestApplication) {
   const config = new DocumentBuilder()
     .setTitle('New Wall Backend')
     .setDescription(description)
@@ -13,6 +19,6 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
-  await app.listen(3000);
 }
+
 bootstrap();
