@@ -16,7 +16,7 @@ const sharp = require('sharp');
 
 export class ImageDetail {
   url: string;
-  thumbnilUrl: string;
+  thumbnailUrl: string;
 }
 
 @ApiTags('Storage')
@@ -45,11 +45,11 @@ export class StorageController {
   )
   async uploadedFile(@UploadedFile('file') file: Express.Multer.File) {
     console.log(StorageController.editFileName);
-    const thumbnil = await this.generateThumbnil(file);
+    const thumbnail = await this.generateThumbnil(file);
 
     return {
       url: `/storage/download/${file.filename}`,
-      thumbnil: `/storage/download/${thumbnil}`,
+      thumbnil: `/storage/download/${thumbnail}`,
     };
   }
 
@@ -78,10 +78,10 @@ export class StorageController {
     let filePaths: ImageDetail[] = [];
 
     for (var index in files) {
-      const thumbnil = await this.generateThumbnil(files[index]);
+      const thumbnail = await this.generateThumbnil(files[index]);
       filePaths.push({
         url: `/storage/download/${files[index].filename}`,
-        thumbnilUrl: `/storage/download/${thumbnil}`,
+        thumbnailUrl: `/storage/download/${thumbnail}`,
       });
     }
     return {
@@ -90,17 +90,17 @@ export class StorageController {
   }
 
   private async generateThumbnil(file: Express.Multer.File): Promise<string> {
-    const thumbnil = `thumbnail-${file.filename}`;
+    const thumbnail = `thumbnail-${file.filename}`;
     await sharp(file.path)
       .resize(200, 200)
-      .toFile(`storage/images/${thumbnil}`, (err, resizeImage) => {
+      .toFile(`storage/images/${thumbnail}`, (err, resizeImage) => {
         if (err) {
           console.log(err);
         } else {
           console.log('');
         }
       });
-    return thumbnil;
+    return thumbnail;
   }
 
   private static editFileName = (
