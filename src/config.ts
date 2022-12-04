@@ -7,7 +7,12 @@ export class DBConfig {
 
 class StorageConfig {
   static STORAGE_DIR: string = 'storage';
-  static storagePath: string = `./images/${this.STORAGE_DIR}`;
+  static IMAGE_DIR: string = 'images';
+  static THUMBNIL_DIR: string = 'thumbnils';
+
+  static imagesPath: string = `./${this.STORAGE_DIR}/${this.IMAGE_DIR}`;
+  static thumnilPath: string = `./${this.STORAGE_DIR}/${this.THUMBNIL_DIR}`;
+
 }
 
 export class Config {
