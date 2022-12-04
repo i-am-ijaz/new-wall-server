@@ -11,7 +11,7 @@ class StorageConfig {
   static THUMBNIL_DIR: string = 'thumbnils';
 
   static imagesPath: string = `./${this.STORAGE_DIR}/${this.IMAGE_DIR}`;
-  static thumnilPath: string = `./${this.STORAGE_DIR}/${this.THUMBNIL_DIR}`;
+  static thumnailPath: string = `./${this.STORAGE_DIR}/${this.THUMBNIL_DIR}`;
 
 }
 

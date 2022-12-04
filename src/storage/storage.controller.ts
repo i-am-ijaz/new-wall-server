@@ -49,7 +49,7 @@ export class StorageController {
 
     return {
       url: `/storage/download/${file.filename}`,
-      thumbnil: `/storage/download/${thumbnail}`,
+      thumbnailUrl: `/storage/download/${thumbnail}`,
     };
   }
 

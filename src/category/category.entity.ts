@@ -5,15 +5,19 @@ import { Document } from 'mongoose';
 @Schema()
 export class Category {
   @ApiProperty({ required: true })
-  @Prop({ required: false, default: null })
+  @Prop({ required: true, default: null })
   name: string;
 
   @ApiProperty({ required: true })
-  @Prop({ required: false, default: null })
+  @Prop({ required: true, default: null })
+  lowerCaseName: string;
+
+  @ApiProperty({ required: true })
+  @Prop({ required: true, default: null })
   url: string;
 
-  @ApiProperty({ readOnly: true })
-  @Prop({ required: false, default: null })
+  @ApiProperty({ required: true })
+  @Prop({ required: true, default: null })
   thumbnailUrl: string;
 }
 

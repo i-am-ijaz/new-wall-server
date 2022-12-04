@@ -14,5 +14,7 @@ export class CategoryService {
     return await this.categoryModel.create(category);
   }
 
-  
+  async get(lowerCaseName: string): Promise<CategoryDocument> {
+    return await this.categoryModel.findOne({ lowerCaseName: lowerCaseName });
+  }
 }
